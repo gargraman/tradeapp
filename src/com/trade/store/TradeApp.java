@@ -49,22 +49,24 @@ public class TradeApp {
 	}
 	
 	private void printTrades(List<Trade> trades) {
-		String header = String.format("|%-10s|%-10s|%-10s|%-10s|%-15s|%-10s|", 
+		String header = String.format("|%-10s|%-10s|%-10s|%-10s|%-15s|%-15s|%-10s|", 
 				"Trade Id",
 				"Version",
 				"C-id",
 				"Book Id",
+				"Create Dt",
 				"Maturity Dt",
 				"Expired?");
 		System.out.println(header);
 		for (Trade t : trades) {
-			String s = String.format("|%-10s|%-10d|%-10s|%-10s|%-15s|%-10s|", 
+			String s = String.format("|%-10s|%-10d|%-10s|%-10s|%-15s|%-15s|%-10s|", 
 					t.getId(),
 					t.getVersion(),
 					t.getCounterpartyId(),
 					t.getBookId(),
+					Utils.fromDate(t.getCreatedDt()),
 					Utils.fromDate(t.getMaturityDt()),
-					t.isExpired());
+					t.isExpired()?"True":"False");
 			System.out.println(s);
 		}
 	}
